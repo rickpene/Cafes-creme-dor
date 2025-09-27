@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafeteria Creme D'OR</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    /* Fundo em vídeo */
+    .video-background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .video-background video {
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #aea4a4;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-text {
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+      position: relative;
+    }
+
+    nav ul li a:hover {
+      color: #f0c674;
+    }
+
+    nav ul li a.active {
+      animation: navClick 0.6s ease;
+    }
+
+    @keyframes navClick {
+      0% { transform: scale(1); color: #fff; }
+      50% { transform: scale(1.2); color: #f0c674; }
+      100% { transform: scale(1); color: #fff; }
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #fff;
+      margin: 4px 0;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav ul.show {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #aea4a4;
+        animation: fadeIn 0.6s ease forwards;
+        z-index: 1000;
+      }
+
+      nav ul li { margin: 15px 0; }
+      nav ul li a { font-size: 1.2em; }
+      .menu-toggle { display: flex; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo principal */
+    .main-logo {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeSlideIn 2s ease forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-logo img {
+      max-width: 200px;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px #aea4a4;
+    }
+
+    @keyframes fadeSlideIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Conteúdo */
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    section h2 {
+      font-size: 2em;
+      color: #fff;
+      margin-bottom: 15px;
+      text-align: center;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    section p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.85);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .card:hover { transform: scale(1.02); }
+
+    .bebidas { display: flex; flex-direction: column; }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-200px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .hidden { opacity: 0; }
+    .in-view { animation: slideInLeft 3.5s ease forwards; }
+
+    .ingredients {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #4b2e2e;
+    }
+
+    footer {
+      background-color: #aea4a4;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vídeo de fundo -->
+  <div class="video-background">
+    <video autoplay muted loop>
+      <source src="video do backgraud/calda chocolate bolo.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo em HTML5.
+    </video>
+  </div>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo-text">Creme D'or</div>
+    <nav>
+      <ul id="menu">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#geladas">Bebidas Geladas</a></li>
+        <li><a href="#drinks">Drinks</a></li>
+        <li><a href="#puristas">Puristas</a></li>
+        <li><a href="https://www.instagram.com/alegria_rp/">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Logo principal -->
+  <div class="main-logo">
+    <img src="img/291826763_425595972818985_2395966739369051609_n.jpg" height="120px" width="120px">
+  </div>
+
+  <!-- Seções -->
+  <section id="inicio">
+    <div class="card">
+      <h2>Creme D'or</h2>
+      <p>Aqui você encontra uma seleção de cafés e bebidas especiais para todos os gostos — dos clássicos aos modernos.</p>
+    </div>
+  </section>
+
+  <section id="geladas">
+    <h2>Bebidas Geladas</h2>
+    <div class="bebidas">
+    <div class="card hidden" data-name="Iced Coffee Latte"></div>
+      <div class="card hidden" data-name="Iced Coffee"></div>
+    <div class="card hidden" data-name="Gelado Mocha"></div>
+      <div class="card hidden" data-name="Gelato Caramel"></div>
+    </div>
+  </section>
+
+  <section id="drinks">
+    <h2>Drinks</h2>
+    <div class="bebidas">
+      <div class="card hidden" data-name="Espresso Martini"></div>
+      <div class="card hidden" data-name="Irish Coffee"></div>
+      <div class="card hidden" data-name="Caipirinha"></div>
+      <div class="card hidden" data-name="Cosmopolitan"></div>
+
+    </div>
+  </section>
+
+  <section id="puristas">
+    <h2>Bebidas Puristas</h2>
+    <div class="bebidas">
+      <div class="card hidden" data-name="Expresso"></div>
+      <div class="card hidden" data-name="Expresso longo"></div>
+      <div class="card hidden" data-name="Macchiato"></div>
+      <div class="card hidden" data-name="Cappuccino Italiano"></div>
+      <div class="card hidden" data-name="Cappuccino Vanilla"></div>
+      <div class="card hidden" data-name="Cappuccino Caramelo"></div>
+      <div class="card hidden" data-name="Cappuccino Doce de leite"></div>
+      <div class="card hidden" data-name="Cappuccino Nutella"></div>
+      <div class="card hidden" data-name="Mocha"></div>
+      <div class="card hidden" data-name="Coados"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Salmos 27:1-6</p>
+  </footer>
+
+  <script>
+    const cardData = {
+      "Iced Coffee Latte": {
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "Leite frio 350ml."],
+        preparo: "Prepare o expresso, coloque no copo de 500ml com gelo e complete com leite ."
+      },
+      "Iced Coffee": {
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "Água fria ou ambiente 350ml."],
+        preparo: "Prepare o expresso, coloque no copo de 500ml com gelo e complete com água fria."
+      },
+      "Gelado Mocha": {
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "30ml de calda de chocolate","leite 250ml"],
+        preparo: "coloque gelo no copo de 500ml, em sequida adicione 250ml de leite frio, acresente calda de choloque junto com a dose de expresso. "
+      },
+      "Gelato Caramel": {
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "2 a 3 panb de calda de caramelo", "Leite 250ml",],
+        preparo: "coloque gelo no copo de 500ml, em sequida adicione 250ml de leite frio, acresente calda de caremelo, depois uma dose de expresso."
+      },
+      "Espresso Martini": {
+        ingredientes: ["30ml Vodka", "22ml Licor de café", "30ml Espresso"],
+        preparo: "Bata todos os ingredientes na coqueteleira com gelo e sirva em taça gelada."
+      },
+      "Irish Coffee": {
+        ingredientes: ["Café quente 50ml", "Uísque irlandês 15ml", "Creme"],
+        preparo: "Misture café com uísque, adicione açúcar a gosto e finalize com creme por cima."
+      },
+      "Caipirinha": {
+        ingredientes: ["morango ou limão ", "Açucar ou xarope de açucar ", "30ml vodka","muito gelo"],
+        preparo: "Adicione limão ou morango e esprema no copo, adicione o açucar e depois vodka e gel, misture bem e pode servir."
+      },
+      "Cosmopolitan": {
+        ingredientes: ["40ml de vodka ", "Açucar ou xarope de açucar 15ml ", "gelo 250ml","30ml de cranberry","15ml de licor de laranja"],
+        preparo: "Adicione vodka na coqueteleira com licor de laranja e xarope de açucar , depois agrecente suco decranberry e termine com gelo, bata bem e trasfira para um copo gelato e fique avontade para servir."
+      },
+      "Expresso": {
+        ingredientes: ["Café moído", "Água quente"],
+        preparo: "Extraia o café sob alta pressão em 30 segundos."
+      },
+      "Expresso longo": {
+        ingredientes: ["Café moído", "Água quente","30ml de Agua"],
+        preparo: "Extraia o café sob alta pressão em 30 segundos. depois adicione água quente no expresso." 
+      },
+      "Macchiato": {
+        ingredientes: ["Café moído", "210ml de leite",],
+        preparo: "Extraia o café sob alta pressão em 30 segundos. depois adicione somente a crema do leite e está pronto para servir." 
+      },
+      "Cappuccino Italiano": {
+        ingredientes: ["Espresso", "Leite vaporizado",],
+        preparo: "Prepare o expresso, adicione leite vaporizado e finalize com uma camada de espuma."
+      },
+      "Cappuccino Vanilla": {
+        ingredientes: ["Espresso", "Leite vaporizado", "Essencia de vanilla"],
+        preparo: "Misture o expresso com bastante leite vaporizado e adoce a 2 punt de vanilla."
+      },
+      "Cappuccino Caramelo": {
+        ingredientes: ["Espresso", "Leite vaporizado", "Essencia de Caramelo"],
+        preparo: "Misture o expresso com bastante leite vaporizado e adoce a 2 punt de Caramelo."
+      },
+      "Cappuccino Doce de leite": {
+        ingredientes: ["Espresso", "Leite vaporizado", "20g de doce de leite"],
+        preparo: "Misture o expresso com o doce de leite e coloque leite vaporizado ."
+      },
+      "Cappuccino Nutella": {
+        ingredientes: ["Espresso", "Leite vaporizado", "20g de Nutella"],
+        preparo: "Misture o expresso com a Nutella e coloque leite vaporizado ."
+      },
+      "Mocha": {
+        ingredientes: ["Espresso", "Leite vaporizado", "10g de calda de chocolate"],
+        preparo: "Uma dose de expresso, junto com a calda de chocolate e depois o leite vaporizado ."
+      },
+      "Coados": {
+        ingredientes: ["Café", "Água quente 250ml", "metodo"],
+        preparo: "Moer o café , escolher o metodo que irá fazer e fazer um ataque de 50ml de infusão, depois de 30s 150ml de 1 ataque, depois 1:30min 250ml, espere dar 3min e pode trasferir para com copo e server. ."
+      }
+      
+    };
+
+    // Preencher cards
+    document.querySelectorAll(".card").forEach(card => {
+      const name = card.dataset.name;
+      if (name) {
+        card.innerHTML = `<h3>${name}</h3>
+          <p>Clique para ver os detalhes.</p>
+          <div class="ingredients" style="display:none;"></div>`;
+
+        card.addEventListener("click", () => {
+          const ingredientsDiv = card.querySelector(".ingredients");
+          if (ingredientsDiv.style.display === "none") {
+            const data = cardData[name];
+            ingredientsDiv.innerHTML = `
+              <strong>Ingredientes:</strong> ${data.ingredientes.join(", ")}
+              <br><br>
+              <strong>Modo de preparo:</strong> ${data.preparo}
+            `;
+            ingredientsDiv.style.display = "block";
+          } else {
+            ingredientsDiv.style.display = "none";
+          }
+        });
+      }
+    });
+
+    // Menu hamburger
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show');
+    }
+
+    // Navbar active
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        const menu = document.getElementById('menu');
+        if (menu.classList.contains('show')) menu.classList.remove('show');
+      });
+    });
+
+    // Scroll animation
+    const cards = document.querySelectorAll('.card.hidden');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          entry.target.classList.remove('hidden');
+        }
+      });
+    }, { threshold: 0.2 });
+    cards.forEach(card => observer.observe(card));
+  </script>
+
+</body>
+</html>
