@@ -6,10 +6,9 @@
   <title>Cafeteria Creme D'OR</title>
   <style>
     body, html {
-      /* Imagem de fundo alterada para uma URL aleatória */
       background-image: url(img/pessoa-tirando-foto-de-bolas-de-sorvete-na-tigela-com-smartphone.jpg); 
-      background-size: cover; /* Garante que a imagem cubra a tela */
-      background-attachment: fixed; /* Fixa o fundo na tela */
+      background-size: cover; 
+      background-attachment: fixed; 
       margin: 0;
       padding: 0;
       height: 100%;
@@ -17,7 +16,6 @@
       color: #333;
     }
 
-    /* Fundo em vídeo */
     .video-background {
       position: fixed;
       top: 0; left: 0;
@@ -33,7 +31,6 @@
       object-fit: cover;
     }
 
-    /* Navbar */
     header {
       background-color: #aea4a4;
       padding: 15px 20px;
@@ -49,7 +46,7 @@
       color: #fff;
       font-size: 20px;
       font-weight: bold;
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
       text-align: center;
     }
 
@@ -129,7 +126,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Logo principal */
     .main-logo {
       display: flex;
       justify-content: center;
@@ -151,7 +147,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Conteúdo */
     section {
       padding: 50px 20px;
       max-width: 900px;
@@ -226,7 +221,6 @@
         <li><a href="#drinks">Drinks</a></li>
         <li><a href="#puristas">Puristas</a></li>
         <li><a href="https://www.instagram.com/alegria_rp/">Contato</a></li>
-        
       </ul>
     </nav>
     <div class="menu-toggle" onclick="toggleMenu()">
@@ -239,6 +233,7 @@
   <div class="main-logo">
     <img src="img/291826763_425595972818985_2395966739369051609_n.jpg" height="120px" width="120px">
   </div>
+
   <section id="inicio">
     <div class="card">
       <h2>Creme D'or</h2>
@@ -249,9 +244,9 @@
   <section id="geladas">
     <h2>Bebidas Geladas</h2>
     <div class="bebidas">
-    <div class="card hidden" data-name="Iced Coffee Latte"></div>
+      <div class="card hidden" data-name="Iced Coffee Latte"></div>
       <div class="card hidden" data-name="Iced Coffee"></div>
-    <div class="card hidden" data-name="Gelado Mocha"></div>
+      <div class="card hidden" data-name="Gelado Mocha"></div>
       <div class="card hidden" data-name="Gelato Caramel"></div>
     </div>
   </section>
@@ -291,20 +286,20 @@
   <script>
     const cardData = {
       "Iced Coffee Latte": {
-        ingredientes: ["Expresso 30ml", "Gelo 120ml", "Leite frio 350ml."],
-        preparo: "Prepare o expresso, coloque no copo de 500ml com gelo e complete com leite ."
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "Leite frio 350ml"],
+        preparo: "Prepare o expresso, coloque no copo de 500ml com gelo e complete com leite."
       },
       "Iced Coffee": {
-        ingredientes: ["Expresso 30ml", "Gelo 120ml", "Água fria ou ambiente 350ml."],
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "Água fria ou ambiente 350ml"],
         preparo: "Prepare o expresso, coloque no copo de 500ml com gelo e complete com água fria."
       },
       "Gelado Mocha": {
-        ingredientes: ["Expresso 30ml", "Gelo 120ml", "30ml de calda de chocolate","leite 250ml"],
-        preparo: "coloque gelo no copo de 500ml, em sequida adicione 250ml de leite frio, acresente calda de choloque junto com a dose de expresso. "
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "30ml de calda de chocolate", "Leite 250ml"],
+        preparo: "Coloque gelo no copo de 500ml, em seguida adicione 250ml de leite frio e acrescente a calda de chocolate junto com a dose de expresso."
       },
       "Gelato Caramel": {
-        ingredientes: ["Expresso 30ml", "Gelo 120ml", "2 a 3 panb de calda de caramelo", "Leite 250ml",],
-        preparo: "coloque gelo no copo de 500ml, em sequida adicione 250ml de leite frio, acresente calda de caremelo, depois uma dose de expresso."
+        ingredientes: ["Expresso 30ml", "Gelo 120ml", "2 a 3 pumps de calda de caramelo", "Leite 250ml"],
+        preparo: "Coloque gelo no copo de 500ml, em seguida adicione 250ml de leite frio, acrescente a calda de caramelo e depois uma dose de expresso."
       },
       "Espresso Martini": {
         ingredientes: ["30ml Vodka", "22ml Licor de café", "30ml Espresso"],
@@ -312,68 +307,66 @@
       },
       "Irish Coffee": {
         ingredientes: ["Café quente 50ml", "Uísque irlandês 15ml", "Creme"],
-        preparo: "Misture café com uísque, adicione açúcar a gosto e finalize com creme por cima."
+        preparo: "Misture o café com uísque, adicione açúcar a gosto e finalize com creme por cima."
       },
       "Caipirinha": {
-        ingredientes: ["morango ou limão ", "Açucar ou xarope de açucar ", "30ml vodka","muito gelo"],
-        preparo: "Adicione limão ou morango e esprema no copo, adicione o açucar e depois vodka e gel, misture bem e pode servir."
+        ingredientes: ["Morango ou limão", "Açúcar ou xarope de açúcar", "30ml vodka", "Muito gelo"],
+        preparo: "Adicione limão ou morango e esprema no copo, adicione o açúcar e depois a vodka e o gelo. Misture bem e pode servir."
       },
       "Cosmopolitan": {
-        ingredientes: ["40ml de vodka ", "Açucar ou xarope de açucar 15ml ", "gelo 250ml","30ml de cranberry","15ml de licor de laranja"],
-        preparo: "Adicione vodka na coqueteleira com licor de laranja e xarope de açucar , depois agrecente suco de cranberry e termine com gelo, bata bem e trasfira para um copo gelato e fique avontade para servir."
+        ingredientes: ["40ml de vodka", "15ml de açúcar ou xarope de açúcar", "250ml de gelo", "30ml de cranberry", "15ml de licor de laranja"],
+        preparo: "Adicione a vodka na coqueteleira com o licor de laranja e o xarope de açúcar. Depois acrescente o suco de cranberry e finalize com gelo. Bata bem e transfira para um copo gelado."
       },
       "Aperol": {
-        ingredientes: ["200g de Gelo", "150ml de Prosecco", "100ml de Aperol","60ml de agua com gás","1 guarnição de laranja."],
-        preparo: "Pege o copo de Aperol e adicione muito gelo, depois acresente 150ml de Prosecco (aprocimadamente 3 doses), 100ml de Aperol (duas doses),adicione 50ml de água com gás , e finalize com uma fatia de laranja ou toranja para decorar e trazer aroma para a bebida."
+        ingredientes: ["200g de gelo", "150ml de Prosecco", "100ml de Aperol", "60ml de água com gás", "1 fatia de laranja"],
+        preparo: "Pegue o copo de Aperol e adicione bastante gelo. Depois acrescente 150ml de Prosecco (aproximadamente 3 doses), 100ml de Aperol (duas doses), 60ml de água com gás e finalize com uma fatia de laranja ou toranja para decorar e aromatizar a bebida."
       },
       "Sakerinha": {
-        ingredientes: ["200g de Gelo", "Morangos ou Abacaxi", "2 colheres de a;cúcar","70ml de Saque",],
-        preparo: "Pege um copo, adicione os morangos ou abacaxi, coloque 2 colheres de açúcar, masere tudo, adicione 70ml de saque e misture tudo com ajuda de uma bailarina. "
+        ingredientes: ["200g de gelo", "Morangos ou abacaxi", "2 colheres de açúcar", "70ml de saquê"],
+        preparo: "Pegue um copo, adicione os morangos ou o abacaxi, coloque 2 colheres de açúcar e macere tudo. Depois adicione 70ml de saquê e misture bem com a ajuda de uma bailarina."
       },
       "Expresso": {
         ingredientes: ["Café moído", "Água quente"],
         preparo: "Extraia o café sob alta pressão em 30 segundos."
       },
       "Expresso longo": {
-        ingredientes: ["Café moído", "Água quente","30ml de Agua"],
-        preparo: "Extraia o café sob alta pressão em 30 segundos. depois adicione água quente no expresso." 
+        ingredientes: ["Café moído", "Água quente", "30ml de água"],
+        preparo: "Extraia o café sob alta pressão em 30 segundos e depois adicione água quente no expresso."
       },
       "Macchiato": {
-        ingredientes: ["Café moído", "210ml de leite",],
-        preparo: "Extraia o café sob alta pressão em 30 segundos. depois adicione somente a crema do leite e está pronto para servir." 
+        ingredientes: ["Café moído", "210ml de leite"],
+        preparo: "Extraia o café sob alta pressão em 30 segundos. Depois adicione somente a crema do leite e estará pronto para servir."
       },
       "Cappuccino Italiano": {
-        ingredientes: ["Espresso", "Leite vaporizado",],
+        ingredientes: ["Espresso", "Leite vaporizado"],
         preparo: "Prepare o expresso, adicione leite vaporizado e finalize com uma camada de espuma."
       },
       "Cappuccino Vanilla": {
-        ingredientes: ["Espresso", "Leite vaporizado", "Essencia de vanilla"],
-        preparo: "Misture o expresso com bastante leite vaporizado e adoce a 2 punt de vanilla."
+        ingredientes: ["Espresso", "Leite vaporizado", "Essência de baunilha"],
+        preparo: "Misture o expresso com bastante leite vaporizado e adoce com 2 pontos de baunilha."
       },
       "Cappuccino Caramelo": {
-        ingredientes: ["Espresso", "Leite vaporizado", "Essencia de Caramelo"],
-        preparo: "Misture o expresso com bastante leite vaporizado e adoce a 2 punt de Caramelo."
+        ingredientes: ["Espresso", "Leite vaporizado", "Essência de caramelo"],
+        preparo: "Misture o expresso com bastante leite vaporizado e adoce com 2 pontos de caramelo."
       },
       "Cappuccino Doce de leite": {
         ingredientes: ["Espresso", "Leite vaporizado", "20g de doce de leite"],
-        preparo: "Misture o expresso com o doce de leite e coloque leite vaporizado ."
+        preparo: "Misture o expresso com o doce de leite e adicione leite vaporizado."
       },
       "Cappuccino Nutella": {
         ingredientes: ["Espresso", "Leite vaporizado", "20g de Nutella"],
-        preparo: "Misture o expresso com a Nutella e coloque leite vaporizado ."
+        preparo: "Misture o expresso com a Nutella e adicione leite vaporizado."
       },
       "Mocha": {
         ingredientes: ["Espresso", "Leite vaporizado", "10g de calda de chocolate"],
-        preparo: "Uma dose de expresso, junto com a calda de chocolate e depois o leite vaporizado ."
+        preparo: "Misture uma dose de expresso com a calda de chocolate e depois adicione o leite vaporizado."
       },
       "Coados": {
-        ingredientes: ["Café", "Água quente 250ml", "metodo"],
-        preparo: "Moer o café , escolher o metodo que irá fazer e fazer um ataque de 50ml de infusão, depois de 30s 150ml de 1 ataque, depois 1:30min 250ml, espere dar 3min e pode trasferir para com copo e server. ."
+        ingredientes: ["Café", "Água quente 250ml", "Método de preparo"],
+        preparo: "Moer o café, escolher o método de preparo e fazer um ataque inicial de 50ml de infusão. Depois de 30s adicione 150ml (segundo ataque), em 1:30min adicione até 250ml. Espere 3min, transfira para um copo e sirva."
       }
-      
     };
 
-    // Preencher cards
     document.querySelectorAll(".card").forEach(card => {
       const name = card.dataset.name;
       if (name) {
@@ -398,13 +391,11 @@
       }
     });
 
-    // Menu hamburger
     function toggleMenu() {
       const menu = document.getElementById('menu');
       menu.classList.toggle('show');
     }
 
-    // Navbar active
     const navLinks = document.querySelectorAll('nav ul li a');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -415,7 +406,6 @@
       });
     });
 
-    // Scroll animation
     const cards = document.querySelectorAll('.card.hidden');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
